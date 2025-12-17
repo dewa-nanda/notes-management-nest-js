@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Dummy 1",
+        "description": "I will become a hero",
+        "created_at": "10-10-2020",
+        "updated_at": "10-12-2020"
+    },
+    {
+        "id": 2,
+        "name": "Dummy 2",
+        "description": "I will become a villain",
+        "created_at": "20-12-2020",
+        "updated_at": "10-5-2023"
+    }
+]
