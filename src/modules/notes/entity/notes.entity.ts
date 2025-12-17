@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Notes } from '../interfaces/note.interface';
+import { Notes } from '../types/note.interface';
 import dummyData from '@src/common/data/dummy.json';
 
 @Injectable()
