@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { NotesModule } from './modules/notes/notes.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig from './config/app.config';
-import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -11,7 +10,6 @@ import { DatabaseModule } from './database/database.module';
       envFilePath: '.env/.app.env',
       load: [appConfig],
     }),
-    DatabaseModule,
   ],
   controllers: [],
   providers: [],

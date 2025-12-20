@@ -22,7 +22,7 @@ Pada versi pertama ini, target utamanya adalah:
 - Node.js
 - TypeScript
 - NestJS
-- TypeORM
+- Prisma
 - Database: MySQL
 - Testing: Jest (unit & e2e)
 
@@ -66,6 +66,7 @@ src/
 ```
 pnpm install # install dependencies
 pnpm run start:dev # run application
+pnpm prisma generate
 ```
 
 # Notes API (v1)

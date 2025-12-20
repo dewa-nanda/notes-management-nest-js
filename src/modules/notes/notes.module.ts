@@ -6,5 +6,6 @@ import { NotesEntity } from './entity/notes.entity';
 @Module({
   controllers: [NotesController],
   providers: [NotesService, NotesEntity],
+  imports: [],
 })
 export class NotesModule {}
