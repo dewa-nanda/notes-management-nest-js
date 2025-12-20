@@ -15,7 +15,7 @@ Pada versi pertama ini, target utamanya adalah:
 - CRUD Notes
 - Struktur folder rapi & scalable
 
-❌ Belum fokus ke fitur lanjutan (RBAC, pagination advance, caching, dsb)
+Belum fokus ke fitur lanjutan (RBAC, pagination advance, caching, dsb)
 
 # Tech Stack
 
