@@ -6,7 +6,7 @@ export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
   @Get()
-  getAllNotes() {
-    return this.notesService.getAll();
+  async getAllNotes() {
+    return await this.notesService.getAll();
   }
 }

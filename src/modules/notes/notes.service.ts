@@ -5,7 +5,7 @@ import { NotesEntity } from './entity/notes.entity';
 export class NotesService {
   constructor(readonly NotesEntity: NotesEntity) {}
 
-  getAll() {
-    return this.NotesEntity.Notes;
+  async getAll() {
+    return await this.NotesEntity.findAll();
   }
 }

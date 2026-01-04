@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Notes } from '../types/note.interface';
-import dummyData from '@src/common/data/dummy.json';
+import { PrismaService } from '@src/database/prisma.service';
 
 @Injectable()
 export class NotesEntity {
-  public Notes: Notes[] = dummyData;
+  constructor(private prisma: PrismaService) {}
+
+  async findAll(): Promise<Notes[]> {
+    return await this.prisma.notes.findMany();
+  }
 }
