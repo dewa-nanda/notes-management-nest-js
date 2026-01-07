@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,7 @@ async function bootstrap() {
   const apiBaseUrl = configService.get<string>('app.baseUrl');
 
   app.useGlobalFilters(new PrismaExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(port);
 
   console.log(`[ ${aplicationName} ]`);
