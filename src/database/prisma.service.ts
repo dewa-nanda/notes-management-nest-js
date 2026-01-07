@@ -38,6 +38,7 @@ export class PrismaService implements OnModuleInit, OnModuleDestroy {
         'database.connectionLimit',
         10,
       ),
+      allowPublicKeyRetrieval: true,
     });
 
     this.client = new PrismaClient({
