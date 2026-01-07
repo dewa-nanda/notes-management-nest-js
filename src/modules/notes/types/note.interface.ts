@@ -1,7 +1,8 @@
 export interface Notes {
-  id: number;
-  name: string;
-  description: string;
-  created_at: Date;
-  updated_at: Date;
+  id: string;
+  title: string;
+  content: string;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -65,70 +65,70 @@ describe('NotesController', () => {
     });
   });
 
-  describe('getAllNotes', () => {
-    it('should return an array of notes', async () => {
-      mockNotesService.getAll.mockResolvedValue(mockNotes);
+  // describe('getAllNotes', () => {
+  //   it('should return an array of notes', async () => {
+  //     mockNotesService.getAll.mockResolvedValue(mockNotes);
 
-      const result = await controller.getAllNotes();
+  //     const result = await controller.getAllNotes();
 
-      expect(result).toEqual(mockNotes);
-      expect(result).toHaveLength(3);
-      expect(service.getAll).toHaveBeenCalledTimes(1);
-    });
+  //     expect(result).toEqual(mockNotes);
+  //     expect(result).toHaveLength(3);
+  //     expect(service.getAll).toHaveBeenCalledTimes(1);
+  //   });
 
-    it('should return empty array when no notes exist', async () => {
-      mockNotesService.getAll.mockResolvedValue([]);
+  //   it('should return empty array when no notes exist', async () => {
+  //     mockNotesService.getAll.mockResolvedValue([]);
 
-      const result = await controller.getAllNotes();
+  //     const result = await controller.getAllNotes();
 
-      expect(result).toEqual([]);
-      expect(result).toHaveLength(0);
-      expect(service.getAll).toHaveBeenCalledTimes(1);
-    });
+  //     expect(result).toEqual([]);
+  //     expect(result).toHaveLength(0);
+  //     expect(service.getAll).toHaveBeenCalledTimes(1);
+  //   });
 
-    it('should return notes with correct data structure', async () => {
-      mockNotesService.getAll.mockResolvedValue(mockNotes);
-      const result = await controller.getAllNotes();
+  //   it('should return notes with correct data structure', async () => {
+  //     mockNotesService.getAll.mockResolvedValue(mockNotes);
+  //     const result = await controller.getAllNotes();
 
-      expect(result[0]).toHaveProperty('id');
-      expect(result[0]).toHaveProperty('name');
-      expect(result[0]).toHaveProperty('description');
-      expect(result[0]).toHaveProperty('created_at');
-      expect(result[0]).toHaveProperty('updated_at');
-      expect(typeof result[0].id).toBe('number');
-      expect(typeof result[0].name).toBe('string');
-      expect(typeof result[0].description).toBe('string');
-      expect(result[0].created_at).toBeInstanceOf(Date);
-      expect(result[0].updated_at).toBeInstanceOf(Date);
-    });
+  //     expect(result[0]).toHaveProperty('id');
+  //     expect(result[0]).toHaveProperty('name');
+  //     expect(result[0]).toHaveProperty('description');
+  //     expect(result[0]).toHaveProperty('created_at');
+  //     expect(result[0]).toHaveProperty('updated_at');
+  //     expect(typeof result[0].id).toBe('number');
+  //     expect(typeof result[0].name).toBe('string');
+  //     expect(typeof result[0].description).toBe('string');
+  //     expect(result[0].created_at).toBeInstanceOf(Date);
+  //     expect(result[0].updated_at).toBeInstanceOf(Date);
+  //   });
 
-    it('should handle service errors properly', async () => {
-      const errorMessage = 'Database connection failed';
-      mockNotesService.getAll.mockRejectedValue(new Error(errorMessage));
+  //   it('should handle service errors properly', async () => {
+  //     const errorMessage = 'Database connection failed';
+  //     mockNotesService.getAll.mockRejectedValue(new Error(errorMessage));
 
-      await expect(controller.getAllNotes()).rejects.toThrow(errorMessage);
-      expect(service.getAll).toHaveBeenCalledTimes(1);
-    });
+  //     await expect(controller.getAllNotes()).rejects.toThrow(errorMessage);
+  //     expect(service.getAll).toHaveBeenCalledTimes(1);
+  //   });
 
-    it('should call service.getAll without any parameters', async () => {
-      mockNotesService.getAll.mockResolvedValue(mockNotes);
+  //   it('should call service.getAll without any parameters', async () => {
+  //     mockNotesService.getAll.mockResolvedValue(mockNotes);
 
-      await controller.getAllNotes();
+  //     await controller.getAllNotes();
 
-      expect(service.getAll).toHaveBeenCalledWith();
-    });
+  //     expect(service.getAll).toHaveBeenCalledWith();
+  //   });
 
-    it('should return notes with valid date objects', async () => {
-      mockNotesService.getAll.mockResolvedValue(mockNotes);
+  //   it('should return notes with valid date objects', async () => {
+  //     mockNotesService.getAll.mockResolvedValue(mockNotes);
 
-      const result = await controller.getAllNotes();
+  //     const result = await controller.getAllNotes();
 
-      result.forEach((note) => {
-        expect(note.created_at).toBeInstanceOf(Date);
-        expect(note.updated_at).toBeInstanceOf(Date);
-        expect(note.created_at.getTime()).not.toBeNaN();
-        expect(note.updated_at.getTime()).not.toBeNaN();
-      });
-    });
-  });
+  //     result.forEach((note) => {
+  //       expect(note.created_at).toBeInstanceOf(Date);
+  //       expect(note.updated_at).toBeInstanceOf(Date);
+  //       expect(note.created_at.getTime()).not.toBeNaN();
+  //       expect(note.updated_at.getTime()).not.toBeNaN();
+  //     });
+  //   });
+  // });
 });

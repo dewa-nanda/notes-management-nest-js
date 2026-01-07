@@ -7,6 +7,6 @@ export class NotesEntity {
   constructor(private prisma: PrismaService) {}
 
   async findAll(): Promise<Notes[]> {
-    return await this.prisma.notes.findMany();
+    return await this.prisma.client.note.findMany();
   }
 }
