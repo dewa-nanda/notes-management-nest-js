@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserData, ResponseUserData } from './interfaces/auth.interface';
-import { UserRepository } from './repository/user.repository';
+import { UserRepository } from './repositories/user.repository';
 import { hashPassword } from '@src/common/helpers/helpers';
 
 @Injectable()
