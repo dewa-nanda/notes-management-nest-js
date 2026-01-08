@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { AuthEntity } from './entity/auth.entity';
+import { UserRepository } from './repository/user.repository';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -15,7 +15,7 @@ describe('AuthController', () => {
       controllers: [AuthController],
       providers: [
         AuthService,
-        { provide: AuthEntity, useValue: mockAuthEntity },
+        { provide: UserRepository, useValue: mockAuthEntity },
       ],
     }).compile();
 

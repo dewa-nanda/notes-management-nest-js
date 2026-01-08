@@ -1,31 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import {
-  RegisterAccountRequest,
-  RegisterAccountResponse,
-} from './types/interfaces/auth.interface';
-import { AuthEntity } from './entity/auth.entity';
+import { CreateUserData, ResponseUserData } from './interfaces/auth.interface';
+import { UserRepository } from './repository/user.repository';
 import { hashPassword } from '@src/common/helpers/helpers';
 
 @Injectable()
 export class AuthService {
-  constructor(private authEntity: AuthEntity) {}
+  constructor(private userRepository: UserRepository) {}
 
-  async registerAccount(
-    _request: RegisterAccountRequest,
-  ): Promise<RegisterAccountResponse> {
-    const request = {
-      ..._request,
-      password: await hashPassword(_request.password),
-    };
+  async registerAccount(request: CreateUserData): Promise<ResponseUserData> {
+    const { username, fullName, password, email } = request;
 
-    const _response = await this.authEntity.createUser(request);
-
-    const response = {
-      username: _response.username,
-      email: _response.email,
-      fullName: _response.fullName,
-    };
-
-    return response;
+    return this.userRepository.createUser({
+      username,
+      fullName,
+      email,
+      password: await hashPassword(password),
+    });
   }
 }
