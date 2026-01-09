@@ -1,23 +1,7 @@
-export interface User {
-  id: string;
-  username: string;
-  email: string;
-  fullName: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-}
-export interface CreateUserInput {
-  username: string;
-  email: string;
-  password: string;
-  fullName?: string;
-}
+import { User } from '@prisma/client';
 
-export interface LoginInput {
-  username: string;
-  password: string;
-}
-
+export type CreateUserInput = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+export type LoginInput = Pick<User, 'username' | 'password'>;
 export type UserResponse = Omit<User, 'password'>;
 
 export interface LoginResponse {
