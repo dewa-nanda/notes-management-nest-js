@@ -3,10 +3,12 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserRepository } from './repositories/user.repository';
 import { DatabaseModule } from '@src/database/database.module';
+import { PassportModule } from '@nestjs/passport';
+import { LocalStrategy } from './strategies/local.strategy';
 
 @Module({
-  providers: [AuthService, UserRepository],
+  imports: [DatabaseModule, PassportModule],
+  providers: [AuthService, UserRepository, LocalStrategy],
   controllers: [AuthController],
-  imports: [DatabaseModule],
 })
 export class AuthModule {}

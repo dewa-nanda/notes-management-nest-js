@@ -26,8 +26,8 @@ export class UserRepository {
     });
   }
 
-  async findByUsername(request: string): Promise<User> {
-    return this.prisma.client.user.findUniqueOrThrow({
+  async findByUsername(request: string): Promise<User | null> {
+    return this.prisma.client.user.findUnique({
       where: { username: request },
     });
   }
