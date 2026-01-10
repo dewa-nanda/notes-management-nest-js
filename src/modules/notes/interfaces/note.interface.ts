@@ -2,10 +2,6 @@ import { Note } from '@prisma/client';
 
 export type NoteResponse = Omit<Note, 'userId'>;
 
-export interface NoteParams {
-  id: string;
-}
-
 export interface NoteFilterRequest {
   userId?: string;
 }

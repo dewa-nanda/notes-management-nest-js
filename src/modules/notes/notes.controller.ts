@@ -6,14 +6,13 @@ import {
   Param,
   Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import {
   CurrentUser,
   type CurrentUserPayload,
 } from '@src/common/decorators/current-user.decorator';
-import { type NoteParams, NoteResponse } from './interfaces/note.interface';
+import { NoteResponse } from './interfaces/note.interface';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { Note } from '@prisma/client';
@@ -30,8 +29,8 @@ export class NotesController {
   }
 
   @Get('/:id')
-  async getOne(@Param() params: NoteParams): Promise<Note> {
-    return this.notesService.getOne({ id: params.id });
+  async getOne(@Param('id') id: string): Promise<Note> {
+    return this.notesService.getOne({ id });
   }
 
   @Post()
@@ -47,16 +46,16 @@ export class NotesController {
   }
 
   @Patch('/:id')
-  async update(@Param() params: NoteParams, @Body() dto: UpdateNoteDto) {
+  async update(@Param('id') id: string, @Body() dto: UpdateNoteDto) {
     return this.notesService.update({
-      id: params.id,
+      id,
       title: dto.title,
       content: dto.content,
     });
   }
 
   @Delete('/:id')
-  async deleteOne(@Param() params: NoteParams) {
-    return this.notesService.delete({ id: params.id });
+  async deleteOne(@Param('id') id: string) {
+    return this.notesService.delete({ id });
   }
 }
