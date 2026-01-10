@@ -2,7 +2,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotesService } from '../notes.service';
 import { NotesRepository } from '../repositories/notes.repository';
-import { Notes } from '../types/note.interface';
+import { Notes } from '../interfaces/note.interface';
 
 describe('NotesService', () => {
   let service: NotesService;
