@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { NotesController } from './notes.controller';
 import { NotesService } from './notes.service';
-import { NotesEntity } from './entity/notes.entity';
+import { NotesRepository } from './repositories/notes.repository';
 import { DatabaseModule } from '@src/database/database.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
@@ -10,7 +10,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
   controllers: [NotesController],
   providers: [
     NotesService,
-    NotesEntity,
+    NotesRepository,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { NotesEntity } from './entity/notes.entity';
+import { NotesRepository } from './repositories/notes.repository';
 
 @Injectable()
 export class NotesService {
-  constructor(readonly NotesEntity: NotesEntity) {}
+  constructor(readonly NotesEntity: NotesRepository) {}
 
   async getAll() {
     return await this.NotesEntity.findAll();
