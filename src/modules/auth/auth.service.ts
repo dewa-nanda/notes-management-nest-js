@@ -1,9 +1,4 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import {
   CreateUserInput,
   LoginInput,
@@ -16,11 +11,14 @@ import {
   hashPassword,
   verifyPassword,
 } from '@src/common/helpers/helpers';
-import { User } from '@prisma/client';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(
+    private userRepository: UserRepository,
+    private jwtService: JwtService,
+  ) {}
 
   async validateUser(
     username: string,
@@ -56,10 +54,14 @@ export class AuthService {
   async login(request: LoginInput): Promise<LoginResponse> {
     const user = await this.validateUser(request.username, request.password);
     const expiresIn = 3600;
+    const token = this.jwtService.sign({
+      username: user.username,
+      id: user.id,
+    });
 
     return {
       user: user,
-      token: '',
+      token,
       expiresIn,
     };
   }
