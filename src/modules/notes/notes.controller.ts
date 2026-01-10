@@ -16,7 +16,9 @@ import { NoteResponse } from './interfaces/note.interface';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { Note } from '@prisma/client';
+import { ApiBearerAuth, ApiSecurity } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('notes')
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
