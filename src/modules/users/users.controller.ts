@@ -6,14 +6,7 @@ export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Get()
-  async getAllUsers() {
+  async allUsers() {
     return await this.userService.findAll();
-  }
-
-  @Get('/:id')
-  async getOneUsers(@Param() params: { id: string }) {
-    const id = params.id;
-
-    return await this.userService.findById({ id });
   }
 }
