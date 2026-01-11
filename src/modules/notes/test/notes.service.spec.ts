@@ -2,30 +2,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotesService } from '../notes.service';
 import { NotesRepository } from '../repositories/notes.repository';
-import { Notes } from '../interfaces/note.interface';
+import { listNotes, mockPaginatedNotes } from './mock/note.mock';
 
 describe('NotesService', () => {
   let service: NotesService;
   let repository: NotesRepository;
-
-  const mockNotes: Notes[] = [
-    {
-      id: 'uuid-note-example-1',
-      title: 'Meeting Notes',
-      content: 'Discussion about project milestones',
-      userId: 'uuid-user-example-1',
-      createdAt: new Date('2025-01-01T08:00:00Z'),
-      updatedAt: new Date('2025-01-01T08:00:00Z'),
-    },
-    {
-      id: 'uuid-note-example-2',
-      title: 'Todo List',
-      content: 'Tasks to complete this week',
-      userId: 'uuid-user-example-2',
-      createdAt: new Date('2025-01-02T09:00:00Z'),
-      updatedAt: new Date('2025-01-02T09:00:00Z'),
-    },
-  ];
 
   const mockNotesRepository = {
     findAll: jest.fn(),
@@ -62,21 +43,23 @@ describe('NotesService', () => {
 
   describe('getAll', () => {
     it('should return all notes from entity', async () => {
-      mockNotesRepository.findAll.mockResolvedValue(mockNotes);
+      const notes = mockPaginatedNotes(listNotes());
+      mockNotesRepository.findAll.mockResolvedValue(notes);
 
-      const result = await service.getAll();
+      const result = await service.getAll({ userId: 'test' });
 
-      expect(result).toEqual(mockNotes);
-      expect(result).toHaveLength(2);
+      expect(result).toEqual(notes);
+      expect(result.items).toHaveLength(1);
     });
 
     it('should return empty array when no notes found', async () => {
-      mockNotesRepository.findAll.mockResolvedValue([]);
+      const notes = mockPaginatedNotes([]);
+      mockNotesRepository.findAll.mockResolvedValue(notes);
 
-      const result = await service.getAll();
+      const result = await service.getAll({ userId: 'test' });
 
-      expect(result).toEqual([]);
-      expect(result).toHaveLength(0);
+      expect(result.items).toEqual([]);
+      expect(result.items).toHaveLength(0);
     });
   });
 });

@@ -7,13 +7,21 @@ import {
   NoteUpdateRequest,
 } from './interfaces/note.interface';
 import { Note } from '@prisma/client';
+import { createPaginatedResponse } from '@src/common/helpers/response';
+import { PaginatedData } from '@src/common/interfaces/ApiResponse';
 
 @Injectable()
 export class NotesService {
   constructor(readonly notesEntity: NotesRepository) {}
 
-  async getAll({ userId }: NoteFilterRequest = {}): Promise<NoteResponse[]> {
-    return await this.notesEntity.findAll({ userId });
+  async getAll({
+    userId,
+    page,
+    limit,
+  }: NoteFilterRequest): Promise<PaginatedData<NoteResponse>> {
+    const notes = await this.notesEntity.findAll({ userId, page, limit });
+
+    return createPaginatedResponse(notes.items, notes.meta);
   }
 
   async getOne({ id }: { id: string }): Promise<Note> {
@@ -44,7 +52,7 @@ export class NotesService {
     });
   }
 
-  async delete({ id }: { id: string }) {
+  async delete({ id }: { id: string }): Promise<{ message: string }> {
     await this.getOne({ id });
     await this.notesEntity.delete({ id });
 

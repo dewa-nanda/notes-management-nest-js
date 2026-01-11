@@ -4,7 +4,7 @@ import { NotesService } from './notes.service';
 import { NotesRepository } from './repositories/notes.repository';
 import { DatabaseModule } from '@src/database/database.module';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth/jwt-auth.guard';
 
 @Module({
   controllers: [NotesController],

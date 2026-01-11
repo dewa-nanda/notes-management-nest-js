@@ -8,18 +8,7 @@ import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Response } from 'express';
-
-export interface ApiResponse<T> {
-  statusCode: number;
-  message: string;
-  data: T;
-  meta?: Record<string, any>;
-}
-
-interface PaginatedData<T> {
-  items: T[];
-  meta: Record<string, unknown>;
-}
+import { ApiResponse, PaginatedData } from '../interfaces/ApiResponse';
 
 function isPaginatedData<T>(data: unknown): data is PaginatedData<T> {
   return (

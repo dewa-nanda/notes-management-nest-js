@@ -6,17 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import {
   CurrentUser,
   type CurrentUserPayload,
 } from '@src/common/decorators/current-user.decorator';
-import { NoteResponse } from './interfaces/note.interface';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
-import { Note } from '@prisma/client';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { type NoteAllQueryRequest } from './interfaces/note.interface';
 
 @ApiBearerAuth()
 @Controller('notes')
@@ -25,13 +25,18 @@ export class NotesController {
 
   @Get()
   async getAll(
+    @Query() { page, limit }: NoteAllQueryRequest,
     @CurrentUser() user: CurrentUserPayload,
-  ): Promise<NoteResponse[]> {
-    return this.notesService.getAll({ userId: user.id });
+  ) {
+    return this.notesService.getAll({
+      userId: user.id,
+      page,
+      limit,
+    });
   }
 
   @Get('/:id')
-  async getOne(@Param('id') id: string): Promise<Note> {
+  async getOne(@Param('id') id: string) {
     return this.notesService.getOne({ id });
   }
 
