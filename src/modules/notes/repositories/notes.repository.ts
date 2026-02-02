@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@src/database/prisma.service';
+import { PrismaService } from '@src/prisma/prisma.service';
 import {
   NoteCreateRequest,
   NoteFilterRequest,
@@ -7,7 +7,7 @@ import {
   NoteUpdateRequest,
 } from '../interfaces/note.interface';
 import { Note } from '@prisma/client';
-import { Meta, PaginatedData } from '@src/common/interfaces/ApiResponse';
+import { Meta, PaginatedData } from '@src/common/interfaces/api-response';
 
 @Injectable()
 export class NotesRepository {

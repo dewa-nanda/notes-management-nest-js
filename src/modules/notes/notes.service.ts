@@ -8,7 +8,7 @@ import {
 } from './interfaces/note.interface';
 import { Note } from '@prisma/client';
 import { createPaginatedResponse } from '@src/common/helpers/response';
-import { PaginatedData } from '@src/common/interfaces/ApiResponse';
+import { PaginatedData } from '@src/common/interfaces/api-response';
 
 @Injectable()
 export class NotesService {

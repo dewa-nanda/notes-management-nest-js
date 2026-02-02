@@ -1,4 +1,4 @@
-import { PaginatedData } from '@src/common/interfaces/ApiResponse';
+import { PaginatedData } from '@src/common/interfaces/api-response';
 import { NoteResponse } from '../../interfaces/note.interface';
 
 export function listNotes(): NoteResponse[] {

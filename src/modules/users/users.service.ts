@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { UsersEntity } from './entity/users.entity';
+import { UsersRepository } from './repositories/users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(readonly usersEntity: UsersEntity) {}
+  constructor(readonly usersRepository: UsersRepository) {}
 
   async findAll() {
-    return await this.usersEntity.findAll();
+    return await this.usersRepository.findAll();
   }
 
   async findById({ id }: { id: string }) {
-    return await this.usersEntity.findById({ id });
+    return await this.usersRepository.findById({ id });
   }
 }

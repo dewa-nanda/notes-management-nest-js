@@ -1,4 +1,4 @@
-import { Meta, PaginatedData } from '../interfaces/ApiResponse';
+import { Meta, PaginatedData } from '../interfaces/api-response';
 
 export function createPaginatedResponse<T>(
   items: T[],
